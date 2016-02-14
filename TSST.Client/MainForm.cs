@@ -29,6 +29,7 @@ namespace TSST.Client
         public List<TaskViewModel> listOfTask { get; set; }
 
         public List<int> listOfFriendsToProject = new List<int>();
+        public List<string> listOfFriendsIDs = new List<string>();
 
         public MainForm()
         {
@@ -78,16 +79,6 @@ namespace TSST.Client
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 string token = Properties.Settings.Default.ApiToken;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                //ProjectViewModel p = new ProjectViewModel();
-                //p.id = 1;
-                //p.title = "tytul7";
-                //p.description = "opis8";
-                //p.startDate = System.DateTime.Today;
-                //p.endDate = System.DateTime.Today;
-                //p.UserIdList.Add(1);
-                //p.UserIdList.Add(2);
-                //p.UserIdList.Add(5);
-                //p.UserIdList.Add(6);
                 string serialized = new JavaScriptSerializer().Serialize(project);
                 var response = await client.PostAsync(ServiceURI + "/api/project/CreateProject", new StringContent(serialized, Encoding.UTF8, "application/json"));
                 if (!response.IsSuccessStatusCode)
@@ -269,9 +260,9 @@ namespace TSST.Client
 
         private void createProjectButton_Click(object sender, EventArgs e)
         {
-            ProjectViewModel p = new ProjectViewModel();
             DateTime startDate = DateTime.Now;
-            
+            ProjectViewModel project = new ProjectViewModel(Convert.ToInt32(numericUpDown1.Value), titleTextBox.Text, descriptionTextBox.Text, DateTime.Now, dateTimePicker1.Value, listOfFriendsToProject);
+            int i = 1;
             //createProject()
         }
 
@@ -285,32 +276,30 @@ namespace TSST.Client
             string tmp;
             tmp = await getMethod("/api/user/GetFriends");
             listOfFriends = new JavaScriptSerializer().Deserialize<List<User>>(tmp);
-            friendsListBox.Items.AddRange(new object[] {
-            "Item 1, column 1",
-            "Item 2, column 1",
-            "Item 3, column 1",
-            "Item 4, column 1",
-            "Item 5, column 1",
-            "Item 1, column 2",
-            "Item 2, column 2",
-            "Item 3, column 2"});
-            friendsListBox.MultiColumn = false;
-            this.friendsListBox.Size = new System.Drawing.Size(120, 95);
-            this.friendsListBox.TabIndex = 0;
-            this.friendsListBox.ColumnWidth = 85;
+            List<string> usersData = new List<string>();
+            List<string> data = new List<string>();
+            
 
-            //List<string> usersData = new List<string>();
-            //List<string> data = new List<string>();
-            //string name;
-            //string surname;
+            foreach (User user in listOfFriends)
+            {
+                var name = user.FirstName;
+                var surname = user.LastName;
+                var ID = user.Id;
+                data.Add(ID+" "+name+" "+surname);
+                listOfFriendsIDs.Add(ID.ToString());
+            }
+            friendsListBox.DataSource = data;
+        }
 
-            //foreach (User user in listOfFriends)
-            //{
-            //    name = user.FirstName;
-            //    surname = user.LastName;
-            //    data.Add(name+" "+surname);
-            //}
-            ////friendsListBox.DataSource = data;
+        public List<string> usersToProject = new List<string>();
+        private void adFriendButton_Click(object sender, EventArgs e)
+        {
+            var selectedID = Convert.ToInt32(friendsListBox.SelectedItem.ToString().Split(' ')[0]);
+            listOfFriendsToProject.Add(selectedID);
+            usersToProject.Add(friendsListBox.SelectedItem.ToString());
+            selectedFriendsListBox.DataSource = null;
+            selectedFriendsListBox.SelectedItem = null;
+            selectedFriendsListBox.DataSource = usersToProject;
         }
     }
 }
