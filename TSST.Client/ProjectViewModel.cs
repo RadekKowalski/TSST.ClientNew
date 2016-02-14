@@ -18,5 +18,14 @@ namespace TSST.Client
         {
             UserIdList = new List<int>();
         }
+        public ProjectViewModel(int id, string title, string desciption, DateTime startDate, DateTime endDate)
+        {
+            this.id = id;
+            this.title = title;
+            this.description = description;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            UserIdList = new List<int>();
+        }
     }
 }

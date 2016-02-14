@@ -30,6 +30,8 @@ namespace TSST.Client
 
         public List<TaskViewModel> listOfTask { get; set; }
 
+        public List<int> listOfFriendsToProject = new List<int>();
+
         public MainForm()
         {
             ServiceURI = "http://tsstagile.azurewebsites.net";
@@ -259,9 +261,7 @@ namespace TSST.Client
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            string tmp;
-            tmp = await getMethod("/api/user/GetFriends");
-            listOfFriends = new JavaScriptSerializer().Deserialize<List<User>>(tmp);
+           
         }
 
         private async void button4_Click(object sender, EventArgs e)
@@ -295,8 +295,34 @@ namespace TSST.Client
 
         private void createProjectButton_Click(object sender, EventArgs e)
         {
+            ProjectViewModel p = new ProjectViewModel();
+            DateTime startDate = DateTime.Now;
+            
+            //createProject()
+        }
 
-            createProject()
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void showFreindsButton_Click(object sender, EventArgs e)
+        {
+            string tmp;
+            tmp = await getMethod("/api/user/GetFriends");
+            listOfFriends = new JavaScriptSerializer().Deserialize<List<User>>(tmp);
+            List<string> usersData = new List<string>();
+            List<string> data = new List<string>();
+            string name;
+            string surname;
+
+            foreach (User user in listOfFriends)
+            {
+                name = user.FirstName;
+                surname = user.LastName;
+                data.Add(name+" "+surname);
+            }
+            friendsListBox.DataSource = data;
         }
     }
 }

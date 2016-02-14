@@ -37,6 +37,18 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.createProjectButton = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.Description = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.titleTextBox = new System.Windows.Forms.TextBox();
+            this.showFreindsButton = new System.Windows.Forms.Button();
+            this.friendsListBox = new System.Windows.Forms.ListBox();
+            this.adFriendButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -121,7 +133,7 @@
             // 
             // createProjectButton
             // 
-            this.createProjectButton.Location = new System.Drawing.Point(13, 13);
+            this.createProjectButton.Location = new System.Drawing.Point(43, 277);
             this.createProjectButton.Name = "createProjectButton";
             this.createProjectButton.Size = new System.Drawing.Size(84, 23);
             this.createProjectButton.TabIndex = 8;
@@ -129,11 +141,109 @@
             this.createProjectButton.UseVisualStyleBackColor = true;
             this.createProjectButton.Click += new System.EventHandler(this.createProjectButton_Click);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(89, 21);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(44, 20);
+            this.numericUpDown1.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "ID";
+            // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Location = new System.Drawing.Point(89, 67);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(100, 20);
+            this.descriptionTextBox.TabIndex = 12;
+            // 
+            // Description
+            // 
+            this.Description.AutoSize = true;
+            this.Description.Location = new System.Drawing.Point(15, 70);
+            this.Description.Name = "Description";
+            this.Description.Size = new System.Drawing.Size(60, 13);
+            this.Description.TabIndex = 13;
+            this.Description.Text = "Description";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.adFriendButton);
+            this.groupBox1.Controls.Add(this.friendsListBox);
+            this.groupBox1.Controls.Add(this.showFreindsButton);
+            this.groupBox1.Controls.Add(this.titleTextBox);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.descriptionTextBox);
+            this.groupBox1.Controls.Add(this.Description);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(301, 206);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Project Properties";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Title";
+            // 
+            // titleTextBox
+            // 
+            this.titleTextBox.Location = new System.Drawing.Point(89, 45);
+            this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.Size = new System.Drawing.Size(100, 20);
+            this.titleTextBox.TabIndex = 15;
+            // 
+            // showFreindsButton
+            // 
+            this.showFreindsButton.Location = new System.Drawing.Point(6, 93);
+            this.showFreindsButton.Name = "showFreindsButton";
+            this.showFreindsButton.Size = new System.Drawing.Size(78, 21);
+            this.showFreindsButton.TabIndex = 15;
+            this.showFreindsButton.Text = "Show friends";
+            this.showFreindsButton.UseVisualStyleBackColor = true;
+            this.showFreindsButton.Click += new System.EventHandler(this.showFreindsButton_Click);
+            // 
+            // friendsListBox
+            // 
+            this.friendsListBox.FormattingEnabled = true;
+            this.friendsListBox.Location = new System.Drawing.Point(89, 94);
+            this.friendsListBox.Name = "friendsListBox";
+            this.friendsListBox.Size = new System.Drawing.Size(100, 56);
+            this.friendsListBox.TabIndex = 16;
+            // 
+            // adFriendButton
+            // 
+            this.adFriendButton.Location = new System.Drawing.Point(7, 120);
+            this.adFriendButton.Name = "adFriendButton";
+            this.adFriendButton.Size = new System.Drawing.Size(76, 20);
+            this.adFriendButton.TabIndex = 17;
+            this.adFriendButton.Text = "Add Friend";
+            this.adFriendButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 360);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.createProjectButton);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -145,6 +255,9 @@
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -160,6 +273,16 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button createProjectButton;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.Label Description;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox titleTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button adFriendButton;
+        private System.Windows.Forms.ListBox friendsListBox;
+        private System.Windows.Forms.Button showFreindsButton;
     }
 }
 
