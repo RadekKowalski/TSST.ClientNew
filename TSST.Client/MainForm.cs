@@ -285,18 +285,32 @@ namespace TSST.Client
             string tmp;
             tmp = await getMethod("/api/user/GetFriends");
             listOfFriends = new JavaScriptSerializer().Deserialize<List<User>>(tmp);
-            List<string> usersData = new List<string>();
-            List<string> data = new List<string>();
-            string name;
-            string surname;
+            friendsListBox.Items.AddRange(new object[] {
+            "Item 1, column 1",
+            "Item 2, column 1",
+            "Item 3, column 1",
+            "Item 4, column 1",
+            "Item 5, column 1",
+            "Item 1, column 2",
+            "Item 2, column 2",
+            "Item 3, column 2"});
+            friendsListBox.MultiColumn = false;
+            this.friendsListBox.Size = new System.Drawing.Size(120, 95);
+            this.friendsListBox.TabIndex = 0;
+            this.friendsListBox.ColumnWidth = 85;
 
-            foreach (User user in listOfFriends)
-            {
-                name = user.FirstName;
-                surname = user.LastName;
-                data.Add(name+" "+surname);
-            }
-            friendsListBox.DataSource = data;
+            //List<string> usersData = new List<string>();
+            //List<string> data = new List<string>();
+            //string name;
+            //string surname;
+
+            //foreach (User user in listOfFriends)
+            //{
+            //    name = user.FirstName;
+            //    surname = user.LastName;
+            //    data.Add(name+" "+surname);
+            //}
+            ////friendsListBox.DataSource = data;
         }
     }
 }

@@ -14,11 +14,13 @@ namespace TSST.Client
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
         public  ICollection<int> UserIdList { get; set; }
+
         public ProjectViewModel()
         {
             UserIdList = new List<int>();
         }
-        public ProjectViewModel(int id, string title, string desciption, DateTime startDate, DateTime endDate)
+
+        public ProjectViewModel (int id, string title, string desciption, DateTime startDate, DateTime endDate)
         {
             this.id = id;
             this.title = title;
@@ -26,6 +28,7 @@ namespace TSST.Client
             this.startDate = startDate;
             this.endDate = endDate;
             UserIdList = new List<int>();
+
         }
     }
 }

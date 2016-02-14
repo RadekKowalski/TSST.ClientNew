@@ -42,11 +42,11 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.Description = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.titleTextBox = new System.Windows.Forms.TextBox();
-            this.showFreindsButton = new System.Windows.Forms.Button();
-            this.friendsListBox = new System.Windows.Forms.ListBox();
             this.adFriendButton = new System.Windows.Forms.Button();
+            this.friendsListBox = new System.Windows.Forms.ListBox();
+            this.showFreindsButton = new System.Windows.Forms.Button();
+            this.titleTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -195,21 +195,22 @@
             this.groupBox1.Text = "Project Properties";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // label2
+            // adFriendButton
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Title";
+            this.adFriendButton.Location = new System.Drawing.Point(7, 120);
+            this.adFriendButton.Name = "adFriendButton";
+            this.adFriendButton.Size = new System.Drawing.Size(76, 20);
+            this.adFriendButton.TabIndex = 17;
+            this.adFriendButton.Text = "Add Friend";
+            this.adFriendButton.UseVisualStyleBackColor = true;
             // 
-            // titleTextBox
+            // friendsListBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(89, 45);
-            this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(100, 20);
-            this.titleTextBox.TabIndex = 15;
+            this.friendsListBox.FormattingEnabled = true;
+            this.friendsListBox.Location = new System.Drawing.Point(89, 94);
+            this.friendsListBox.Name = "friendsListBox";
+            this.friendsListBox.Size = new System.Drawing.Size(100, 56);
+            this.friendsListBox.TabIndex = 16;
             // 
             // showFreindsButton
             // 
@@ -221,22 +222,21 @@
             this.showFreindsButton.UseVisualStyleBackColor = true;
             this.showFreindsButton.Click += new System.EventHandler(this.showFreindsButton_Click);
             // 
-            // friendsListBox
+            // titleTextBox
             // 
-            this.friendsListBox.FormattingEnabled = true;
-            this.friendsListBox.Location = new System.Drawing.Point(89, 94);
-            this.friendsListBox.Name = "friendsListBox";
-            this.friendsListBox.Size = new System.Drawing.Size(100, 56);
-            this.friendsListBox.TabIndex = 16;
+            this.titleTextBox.Location = new System.Drawing.Point(89, 45);
+            this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.Size = new System.Drawing.Size(100, 20);
+            this.titleTextBox.TabIndex = 15;
             // 
-            // adFriendButton
+            // label2
             // 
-            this.adFriendButton.Location = new System.Drawing.Point(7, 120);
-            this.adFriendButton.Name = "adFriendButton";
-            this.adFriendButton.Size = new System.Drawing.Size(76, 20);
-            this.adFriendButton.TabIndex = 17;
-            this.adFriendButton.Text = "Add Friend";
-            this.adFriendButton.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Title";
             // 
             // MainForm
             // 
