@@ -20,8 +20,6 @@ namespace TSST.Client
 
         public string FacebookToken { get; set; }
 
-        public PostResponse postResponse { get; set; }
-
         public User user { get; set; }
 
         public List<User> listOfFriends { get; set; }
@@ -36,35 +34,11 @@ namespace TSST.Client
         {
             ServiceURI = "http://tsstagile.azurewebsites.net";
             FacebookToken = Properties.Settings.Default.FacebookToken;
-            getAccessToken();
             InitializeComponent();
            
         }
 
-        private async void getAccessToken()
-        {
-            using (var client = new HttpClient())
-            {
-                var values = new Dictionary<string, string>
-                {
-                        { "grant_type", "facebook" },
-                        { "accesstoken", Properties.Settings.Default.FacebookToken }
-                };
-                var content = new FormUrlEncodedContent(values);
-                var response = await client.PostAsync(ServiceURI + "/Token", content);
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    postResponse = new JavaScriptSerializer().Deserialize<PostResponse>(responseString);
-                    Properties.Settings.Default.ApiToken=postResponse.access_token;
-                }
-                else
-                {
-                    throw new Exception();
-                }
 
-            }
-        }
 
         private async Task<string> getMethod(string URI)
         {

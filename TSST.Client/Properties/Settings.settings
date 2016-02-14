@@ -8,5 +8,8 @@
     <Setting Name="ApiToken" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ServiceUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://tsstagile.azurewebsites.net</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -46,5 +46,17 @@ namespace TSST.Client.Properties {
                 this["ApiToken"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://tsstagile.azurewebsites.net")]
+        public string ServiceUri {
+            get {
+                return ((string)(this["ServiceUri"]));
+            }
+            set {
+                this["ServiceUri"] = value;
+            }
+        }
     }
 }
