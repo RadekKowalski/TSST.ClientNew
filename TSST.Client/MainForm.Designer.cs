@@ -42,6 +42,13 @@
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.udateTaskButton = new System.Windows.Forms.Button();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label11 = new System.Windows.Forms.Label();
+            this.updateTaskComboBox = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.taskTitleTextBox = new System.Windows.Forms.TextBox();
             this.createTaskButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,18 +69,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.fileProjectComboBox = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.updateTaskComboBox = new System.Windows.Forms.ComboBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.udateTaskButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.deleteProjectButton = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.deletingProjectComboBox = new System.Windows.Forms.ComboBox();
-            this.deleteProjectButton = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -235,6 +235,74 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Task Properties";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(223, 238);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "Delete";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // udateTaskButton
+            // 
+            this.udateTaskButton.Location = new System.Drawing.Point(109, 238);
+            this.udateTaskButton.Name = "udateTaskButton";
+            this.udateTaskButton.Size = new System.Drawing.Size(75, 23);
+            this.udateTaskButton.TabIndex = 35;
+            this.udateTaskButton.Text = "Update";
+            this.udateTaskButton.UseVisualStyleBackColor = true;
+            this.udateTaskButton.Click += new System.EventHandler(this.udateTaskButton_Click);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(223, 212);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(75, 17);
+            this.radioButton2.TabIndex = 34;
+            this.radioButton2.Text = "Completed";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(109, 212);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(78, 17);
+            this.radioButton1.TabIndex = 33;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "In Progress";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 180);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(31, 13);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Task";
+            // 
+            // updateTaskComboBox
+            // 
+            this.updateTaskComboBox.FormattingEnabled = true;
+            this.updateTaskComboBox.Location = new System.Drawing.Point(72, 176);
+            this.updateTaskComboBox.Name = "updateTaskComboBox";
+            this.updateTaskComboBox.Size = new System.Drawing.Size(328, 21);
+            this.updateTaskComboBox.TabIndex = 31;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(127, 155);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(171, 13);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Update Task Status / Delete Task";
+            // 
             // taskTitleTextBox
             // 
             this.taskTitleTextBox.Location = new System.Drawing.Point(72, 70);
@@ -321,6 +389,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox3.Controls.Add(this.fileDescriptionTextBox);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.attachFileButton);
@@ -416,76 +485,9 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(127, 155);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(171, 13);
-            this.label10.TabIndex = 30;
-            this.label10.Text = "Update Task Status / Delete Task";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 180);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 13);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "Task";
-            // 
-            // updateTaskComboBox
-            // 
-            this.updateTaskComboBox.FormattingEnabled = true;
-            this.updateTaskComboBox.Location = new System.Drawing.Point(72, 176);
-            this.updateTaskComboBox.Name = "updateTaskComboBox";
-            this.updateTaskComboBox.Size = new System.Drawing.Size(328, 21);
-            this.updateTaskComboBox.TabIndex = 31;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(109, 212);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(78, 17);
-            this.radioButton1.TabIndex = 33;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "In Progress";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(223, 212);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(75, 17);
-            this.radioButton2.TabIndex = 34;
-            this.radioButton2.Text = "Completed";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // udateTaskButton
-            // 
-            this.udateTaskButton.Location = new System.Drawing.Point(109, 238);
-            this.udateTaskButton.Name = "udateTaskButton";
-            this.udateTaskButton.Size = new System.Drawing.Size(75, 23);
-            this.udateTaskButton.TabIndex = 35;
-            this.udateTaskButton.Text = "Update";
-            this.udateTaskButton.UseVisualStyleBackColor = true;
-            this.udateTaskButton.Click += new System.EventHandler(this.udateTaskButton_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(223, 238);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // groupBox4
             // 
+            this.groupBox4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox4.Controls.Add(this.deleteProjectButton);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.deletingProjectComboBox);
@@ -497,15 +499,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Deleting Project";
             // 
-            // button4
+            // deleteProjectButton
             // 
-            this.button4.Location = new System.Drawing.Point(9, 28);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(391, 23);
-            this.button4.TabIndex = 28;
-            this.button4.Text = "Show Projects";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.deleteProjectButton.Location = new System.Drawing.Point(119, 123);
+            this.deleteProjectButton.Name = "deleteProjectButton";
+            this.deleteProjectButton.Size = new System.Drawing.Size(168, 56);
+            this.deleteProjectButton.TabIndex = 31;
+            this.deleteProjectButton.Text = "Delete";
+            this.deleteProjectButton.UseVisualStyleBackColor = true;
+            this.deleteProjectButton.Click += new System.EventHandler(this.deleteProjectButton_Click);
             // 
             // label12
             // 
@@ -524,15 +526,15 @@
             this.deletingProjectComboBox.Size = new System.Drawing.Size(328, 21);
             this.deletingProjectComboBox.TabIndex = 29;
             // 
-            // deleteProjectButton
+            // button4
             // 
-            this.deleteProjectButton.Location = new System.Drawing.Point(119, 123);
-            this.deleteProjectButton.Name = "deleteProjectButton";
-            this.deleteProjectButton.Size = new System.Drawing.Size(168, 56);
-            this.deleteProjectButton.TabIndex = 31;
-            this.deleteProjectButton.Text = "Delete";
-            this.deleteProjectButton.UseVisualStyleBackColor = true;
-            this.deleteProjectButton.Click += new System.EventHandler(this.deleteProjectButton_Click);
+            this.button4.Location = new System.Drawing.Point(9, 28);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(391, 23);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "Show Projects";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainForm
             // 
