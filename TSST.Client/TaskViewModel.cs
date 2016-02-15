@@ -32,7 +32,18 @@ namespace TSST.Client
 
         public TaskViewModel()
         {
+            Id = 1;
+            CreationDate = DateTime.Now;
+            CompleteDate = DateTime.Now;
+            State = TaskState.ToDo;
             Files = new List<FileViewModel>();
+        }
+        public TaskViewModel(string Title, string Description, DateTime CreationDate, int UserId):this()
+        {
+            this.Title = Title;
+            this.Description = Description;
+            this.CreationDate = CreationDate;
+            this.UserId = UserId;
         }
     }
 }

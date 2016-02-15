@@ -30,6 +30,7 @@ namespace TSST.Client
 
         public List<int> listOfFriendsToProject = new List<int>();
         public List<string> listOfFriendsIDs = new List<string>();
+        private List<string> fileList = new List<string>();
 
         public MainForm()
         {
@@ -64,7 +65,7 @@ namespace TSST.Client
             return tmp;
         }
 
-        private async void getTask(string Id)
+        private async Task getTask(string Id)
         {
             string tmp;
             tmp = await getMethod("/api/task/GetProjectTasks?projectId="+Id);
@@ -90,16 +91,6 @@ namespace TSST.Client
 
         private async void createTask(TaskViewModel task, string projectId)
         {
-
-            //TaskViewModel tmp = new TaskViewModel();
-            //tmp.Id = 2;
-            //tmp.Title = "testowy tytul2";
-            //tmp.Description = "testowy opis2";
-            //tmp.CompleteDate = System.DateTime.Today;
-            //tmp.StartDate = System.DateTime.Today;
-            //tmp.CreationDate = System.DateTime.Today;
-            //tmp.State = TaskState.InProgress;
-            //tmp.UserId = 3;
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Clear();
@@ -116,7 +107,7 @@ namespace TSST.Client
 
         }
 
-        private async void deleteProject(string Id)
+        private async Task deleteProject(string Id)
         {
             using (var client = new HttpClient())
             {
@@ -136,7 +127,7 @@ namespace TSST.Client
             }
         }
 
-        private async void getProfile()
+        private async Task getProfile()
         {
             string tmp;
             tmp = await getMethod("/api/user/getprofile");
@@ -150,14 +141,14 @@ namespace TSST.Client
             listOfFriends = new JavaScriptSerializer().Deserialize<List<User>>(tmp);
         }
 
-        private async void getListOfProject()
+        private async Task getListOfProject()
         {
             string tmp;
             tmp = await getMethod("/api/project/GetMyProjects");
             listOfProject = new JavaScriptSerializer().Deserialize<List<ProjectViewModel>>(tmp);
         }
 
-        private async void deleteTask(string taskId)
+        private async Task deleteTask(string taskId)
         {
             using (var client = new HttpClient())
             {
@@ -209,61 +200,35 @@ namespace TSST.Client
                     throw new Exception();
                 }
             }
-        } 
-
-        private async void button1_Click(object sender, EventArgs e)
+        }
+        private async void sendFile(string Path, string description, int taskID)
         {
-            //   deleteProject("6");
-            createTask(null, "7");
+            var fileName = Path.Split('\\').Last();
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Put, "http://tsstagile.azurewebsites.net/api/task/AddFile");
+            byte[] content = System.IO.File.ReadAllBytes(Path);
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string token = Properties.Settings.Default.ApiToken;
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            requestMessage.Headers.Add("TaskId", taskID.ToString());
+            requestMessage.Headers.Add("FileName", fileName);
+            requestMessage.Headers.Add("FileDescription", description);
+            requestMessage.Content = new ByteArrayContent(content);
+            HttpResponseMessage response = await httpClient.SendAsync(requestMessage);
+            string responseAsString = await response.Content.ReadAsStringAsync();
         }
 
-        private async void button2_Click(object sender, EventArgs e)
-        {
-            string tmp;
-            tmp=await getMethod("/api/user/getprofile");
-            user = new JavaScriptSerializer().Deserialize<User>(tmp);
-        }
 
-        private async void button3_Click(object sender, EventArgs e)
+        private async void createProjectButton_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private async void button4_Click(object sender, EventArgs e)
-        {
-            string tmp;
-            tmp = await getMethod("/api/project/GetMyProjects");
-            listOfProject = new JavaScriptSerializer().Deserialize <List< ProjectViewModel >> (tmp);
-            int m = 7;
-        }
-
-        private async void button5_Click(object sender, EventArgs e)
-        {
-            getTask("7");
-           // createProject();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            setStateComplete("2");
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            setStateInProgress("2");
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            deleteTask("2");
-        }
-
-        private void createProjectButton_Click(object sender, EventArgs e)
-        {
+            await getProfile();
+            listOfFriendsToProject.Add(user.Id);
+            listOfFriendsToProject = listOfFriendsToProject.Distinct().ToList<int>();
+            
             DateTime startDate = DateTime.Now;
-            ProjectViewModel project = new ProjectViewModel(Convert.ToInt32(numericUpDown1.Value), titleTextBox.Text, descriptionTextBox.Text, DateTime.Now, dateTimePicker1.Value, listOfFriendsToProject);
-            int i = 1;
-            //createProject()
+            ProjectViewModel project = new ProjectViewModel(1, titleTextBox.Text, descriptionTextBox.Text, DateTime.Now, dateTimePicker1.Value, listOfFriendsToProject);
+            createProject(project);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -300,6 +265,99 @@ namespace TSST.Client
             selectedFriendsListBox.DataSource = null;
             selectedFriendsListBox.SelectedItem = null;
             selectedFriendsListBox.DataSource = usersToProject;
+        }
+
+        private void addFileButton_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+                selectedFileTextBox.Text = openFileDialog1.FileName;
+            }
+
+        }
+
+        private async void createTaskButton_Click(object sender, EventArgs e)
+        {
+            await getProfile();
+            var task = new TaskViewModel(taskTitleTextBox.Text, taskDescriptionTextBox.Text,DateTime.Now,user.Id);
+            var pID = (int)projectsAvailableComboBox.SelectedValue;
+            createTask(task, pID.ToString());
+        }
+
+        private async void button1_Click_1(object sender, EventArgs e)
+        {
+            await getListOfProject();
+            projectsAvailableComboBox.DataSource = null;
+            projectsAvailableComboBox.DataSource = listOfProject;
+            projectsAvailableComboBox.DisplayMember = "title";
+            projectsAvailableComboBox.ValueMember = "id";
+        }
+
+        private async void projectsAvailableComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            projectsAvailableComboBox.ValueMember = "id";
+            var pID = (int)projectsAvailableComboBox.SelectedValue;
+            await getTask(pID.ToString());
+            updateTaskComboBox.DataSource = null;
+            updateTaskComboBox.DataSource = listOfTask;
+            updateTaskComboBox.DisplayMember = "title";
+            updateTaskComboBox.ValueMember = "id";
+        }
+
+        private async void button2_Click_1(object sender, EventArgs e)
+        {
+            await getListOfProject();
+            fileProjectComboBox.DataSource = listOfProject;
+            fileProjectComboBox.DisplayMember = "title";
+            fileProjectComboBox.ValueMember = "id";
+        }
+
+        private async void fileProjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fileProjectComboBox.ValueMember = "id";
+            var pID = (int)fileProjectComboBox.SelectedValue;
+            await getTask(pID.ToString());
+            fileTaskComboBox.DataSource = null;
+            fileTaskComboBox.DataSource = listOfTask;
+            fileTaskComboBox.DisplayMember = "title";
+            fileTaskComboBox.ValueMember = "id";
+        }
+
+        private void attachFileButton_Click(object sender, EventArgs e)
+        {
+            fileTaskComboBox.ValueMember = "id";
+            sendFile(selectedFileTextBox.Text, fileDescriptionTextBox.Text , (int)fileTaskComboBox.SelectedValue);
+        }
+
+        private void udateTaskButton_Click(object sender, EventArgs e)
+        {
+            if (updateTaskComboBox.Items.Count!=0)
+            {
+                if (radioButton1.Checked)
+                    setStateInProgress(updateTaskComboBox.SelectedValue.ToString());
+                else if (radioButton2.Checked)
+                    setStateComplete(updateTaskComboBox.SelectedValue.ToString()); 
+            }
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            await deleteTask(updateTaskComboBox.SelectedValue.ToString());
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            await getListOfProject();
+            deletingProjectComboBox.DataSource = null;
+            deletingProjectComboBox.DataSource = listOfProject;
+            deletingProjectComboBox.DisplayMember = "title";
+            deletingProjectComboBox.ValueMember = "id";
+        }
+
+        private async void deleteProjectButton_Click(object sender, EventArgs e)
+        {
+            var pID = deletingProjectComboBox.SelectedValue;
+            await deleteProject(pID.ToString());
         }
     }
 }
